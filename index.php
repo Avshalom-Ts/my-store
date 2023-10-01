@@ -1,3 +1,7 @@
+<?php
+include('./includes/connect.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,31 +136,26 @@
               <h5>Delivery Brands</h5>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Brand-1
+
+
+            <!-- Fetching the brads list from the database -->
+          <?php
+          $select_brands = "select * from `brands`";
+          $result_brands = mysqli_query($con, $select_brands);
+          // echo $row_data['brand_title']; // Show the result of one brand insted do while loop
+          while ($row_data = mysqli_fetch_assoc($result_brands)) {
+            $brand_title = $row_data['brand_title'];
+            $brand_id = $row_data['brand_id'];
+            // echo $brand_title;
+            echo "<li class='nav-item'>
+            <a href='index.php?brand=$brand_id' class='nav-link text-light'>
+              $brand_title
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Brand-2
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Brand-3
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Brand-4
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Brand-5
-            </a>
-          </li>
+          </li>";
+          }
+          ?>
+
+
         </ul>
         <!-- Category to be displayed -->
         <ul class="navbar-nav me-auto text-center">
@@ -165,31 +164,26 @@
               <h5>Categories</h5>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Categories-1
+
+
+            <!-- Fetching the Categories list from the database -->
+          <?php
+          $select_categories = "select * from `categories`";
+          $result_categories = mysqli_query($con, $select_categories);
+          // echo $row_data['brand_title']; // Show the result of one brand insted do while loop
+          while ($row_data = mysqli_fetch_assoc($result_categories)) {
+            $category_title = $row_data['category_title'];
+            $category_id = $row_data['category_id'];
+            // echo $brand_title;
+            echo "<li class='nav-item'>
+            <a href='index.php?category=$category_id' class='nav-link text-light'>
+              $category_title
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Categories-2
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Categories-3
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Categories-4
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link text-light">
-              Categories-5
-            </a>
-          </li>
+          </li>";
+          }
+          ?>
+
+
         </ul>
       </div>
     </div>
