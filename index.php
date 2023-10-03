@@ -82,7 +82,7 @@ include('./includes/connect.php');
         <div class="row">
         <!-- Fetching products -->
         <?php
-        $select_query = "select * from `products`";
+        $select_query = "select * from `products` order by rand() limit 0,9";
         $result_query = mysqli_query($con, $select_query);
         // $row = mysqli_fetch_assoc($result_query);
         // echo $row['product_title'];
