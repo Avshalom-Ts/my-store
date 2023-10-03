@@ -84,7 +84,8 @@ include('functions/common_function.php');
         <!-- Fetching products -->
         <?php
         getProducts();
-
+        getUniqueCategories();
+        getUniqueBrands();
         ?>
         </div>
       </div>
@@ -100,8 +101,8 @@ include('functions/common_function.php');
           </li>
             <!-- Fetching the brads list from the database -->
           <?php
-          getBrands()
-            ?>
+          getBrands();
+          ?>
         </ul>
         <!-- Category to be displayed -->
         <ul class="navbar-nav me-auto text-center">
@@ -121,7 +122,7 @@ include('functions/common_function.php');
 
 
     <!-- last child -->
-    <div class="bg-info p-3 text-center">
+    <div class="bg-info p-3 text-center footer container-fluid">
       <p>All rights reserved &#x0040; Avshalom-projects 2023 ab</p>
     </div>
 
