@@ -60,6 +60,9 @@ if (isset($_POST['insert_product'])) {
 <body class="bg-light">
   <div class="container mt-3">
     <h1 class="text-center">Insert Products</h1>
+    <div class="flex">
+      <a href="http://localhost/my-store/admin" class="btn btn-info">Back to Admin panel</a>
+    </div>
 
     <!-- Form create product -->
     <form action="" method="post" enctype="multipart/form-data">
