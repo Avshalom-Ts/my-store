@@ -23,17 +23,17 @@ include('functions/common_function.php');
     <!-- first child -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/my-store"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
+        <a class="navbar-brand" href="index.php"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/my-store">Home</a>
+              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
+              <a class="nav-link" href="index.php?dispaly_all">Products</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Register</a>
@@ -86,9 +86,12 @@ include('functions/common_function.php');
         <?php
         if (isset($_GET['search_data_product'])) {
           searchProduct();
+        } elseif (isset($_GET['dispaly_all'])) {
+          getAllProducts();
         } else {
           getProducts();
         }
+
         getUniqueCategories();
         getUniqueBrands();
         ?>
