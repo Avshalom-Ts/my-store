@@ -88,10 +88,11 @@ include('functions/common_function.php');
           searchProduct();
         } elseif (isset($_GET['dispaly_all'])) {
           getAllProducts();
+        } elseif (isset($_GET['product_id'])) {
+          getProductByID();
         } else {
           getProducts();
         }
-
         getUniqueCategories();
         getUniqueBrands();
         ?>
