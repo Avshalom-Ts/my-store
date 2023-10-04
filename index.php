@@ -23,14 +23,14 @@ include('functions/common_function.php');
     <!-- first child -->
     <nav class="navbar navbar-expand-lg navbar-light bg-info">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
+        <a class="navbar-brand" href="/my-store"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <a class="nav-link active" aria-current="page" href="/my-store">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Products</a>
@@ -49,9 +49,10 @@ include('functions/common_function.php');
             </li>
 
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit">Search</button>
+          <form class="d-flex" action="" method="get">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
+            <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
+            <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
           </form>
         </div>
       </div>
@@ -83,7 +84,11 @@ include('functions/common_function.php');
         <div class="row">
         <!-- Fetching products -->
         <?php
-        getProducts();
+        if (isset($_GET['search_data_product'])) {
+          searchProduct();
+        } else {
+          getProducts();
+        }
         getUniqueCategories();
         getUniqueBrands();
         ?>
