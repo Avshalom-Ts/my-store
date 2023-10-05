@@ -10,7 +10,11 @@ include('./includes/header.php');
     <!-- first child -->
     <?php
     include('./includes/navbar.php');
+
+    // Call to cart function
+    cart();
     ?>
+
 
 
     <!-- Second child -->
@@ -87,6 +91,11 @@ include('./includes/header.php');
     <!-- last child -->
     <?php
     include('./includes/footer.php');
+
+
+    // Render the IP address
+    // $ip = getIPAddress();
+    // echo 'User Real IP Address - ' . $ip;
     ?>
 
 
