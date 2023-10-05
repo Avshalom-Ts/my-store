@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
@@ -20,7 +21,13 @@
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>15</sup></a>
+          <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>
+            <sup>
+              <?php
+              cart_items();
+              ?>
+            </sup>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Total price: 100/-</a>
