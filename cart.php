@@ -1,0 +1,196 @@
+<?php
+include('./includes/connect.php');
+include('functions/common_function.php');
+include('./includes/header.php');
+?>
+
+
+  <!-- Navbar -->
+  <div class="container-fluid p-0">
+    <!-- first child -->
+    <?php
+    // include('./includes/navbar.php');
+    
+    // Call to cart function
+    cart();
+    ?>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.php"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?dispaly_all">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i>
+            <sup>
+              <?php
+              cart_items();
+              ?>
+            </sup>
+          </a>
+        </li>
+
+      </ul>
+      <form class="d-flex" action="" method="get">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
+        <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
+        <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
+      </form>
+    </div>
+  </div>
+</nav>
+
+    <!-- Second child -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Welcome Guest</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Third child -->
+    <div class="bg-light">
+      <h3 class="text-center">My Store</h3>
+      <p class="text-center">Communications is at the heart of e-commerce and community</p>
+    </div>
+
+   <!-- Fourth child -->
+   <div class="container">
+    <div class="row">
+      <form action="" method="post">
+      <table class="table table-bordered text-center table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Product Title</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Remove</th>
+            <th scope="col" colspan="2">Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Fetch products from cart -->
+          <?php
+          global $con;
+          $get_ip_address = getIPAddress();
+          $total_price = 0;
+          $cart_query = "select * from `cart_details` where ip_address='$get_ip_address'";
+          $result = mysqli_query($con, $cart_query);
+          while ($row = mysqli_fetch_array($result)) {
+            $product_id = $row['product_id'];
+            $product_qty = $row['quantity'];
+            $select_product = "select * from `products` where product_id='$product_id'";
+            $result_products = mysqli_query($con, $select_product);
+
+            while ($row_product = mysqli_fetch_array($result_products)) {
+              $product_price = array($row_product['product_price']);
+              $price_table = $row_product['product_price'];
+              $product_title = $row_product['product_title'];
+              $product_image1 = $row_product['product_image1'];
+              $product_values = array_sum($product_price);
+              $total_price += $product_values;
+              ?>
+                                <tr>
+                                <td><?php echo $product_title; ?></td>
+                                <td>
+                                <img style="width:100%;height: 60px;object-fit: contain;" src="./admin/product_images/<?php echo $product_image1; ?>" alt="product_image">
+                                <?php echo $product_image1; ?>
+                                </td>
+                                <td>
+                                <input type="number" value="<?php echo $product_qty; ?>" class="form-control" name="qty">
+                                </td>
+                                <?php
+                                $get_ip_address = getIPAddress();
+                                if (isset($_POST['update_cart'])) {
+                                  $quantity = $_POST['qty'];
+                                  $update_cart = "update `cart_details` set quantity=$quantity where ip_address='$get_ip_address'";
+                                  $result_products_quantity = mysqli_query($con, $update_cart);
+                                  $total_price = $total_price * $quantity;
+                                  echo "<script>window.open('cart.php','_self')</script>";
+                                }
+                                ?>
+                                <td>
+                                <?php echo $total_price; ?>/-
+                                </td>
+                                <td>
+                                <input type="checkbox" name="remove_item[]" value="<?php echo $product_id ?>">
+                                </td>
+                                <td >
+                                <input type="submit" class="btn btn-info" value="Update" name="update_cart">
+                                <input type="submit" class="btn btn-secondary" value="Remove" name="remove_cart">
+                                </td>
+                                </tr>
+                                <?php
+            }
+          }
+          ?>
+        </tbody>
+      </table>
+      <!-- Subtotal -->
+      <div class="d-flex gap-2">
+        <h4 class="px-3">Subtotal:<strong class="text-info">5000/-</strong></h4>
+        <a class="btn btn-info" href="index.php">Continue shoping</a>
+        <a class="btn btn-secondary" href="index.php">Checkout</a>
+      </div>
+    </div>
+  </div>
+  </form>
+
+  <!-- Remove one item function -->
+  <?php
+  function removeCartItem()
+  {
+    global $con;
+    if (isset($_POST['remove_cart'])) {
+      foreach ($_POST['remove_item'] as $remove_id) {
+        echo $remove_id;
+        $delete_query = "delete from `cart_details` where product_id=$remove_id";
+        $run_delete = mysqli_query($con, $delete_query);
+        if ($run_delete) {
+          echo "<script>window.open('cart.php','_self')</script>";
+        }
+      }
+    }
+  }
+  echo $remove_items = removeCartItem();
+  ?>
+
+
+    <!-- last child -->
+    <?php
+    include('./includes/footer.php');
+
+
+    // Render the IP address
+    // $ip = getIPAddress();
+    // echo 'User Real IP Address - ' . $ip;
+    ?>
+
+
+    <!-- Botstrap JS link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>

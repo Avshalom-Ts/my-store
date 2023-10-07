@@ -21,7 +21,7 @@
           <a class="nav-link" href="#">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>
+          <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i>
             <sup>
               <?php
               cart_items();
