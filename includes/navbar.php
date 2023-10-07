@@ -30,7 +30,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Total price: 100/-</a>
+          <a class="nav-link" href="#">Total price: 
+            <?php
+            totalCartPrice();
+            ?>/-</a>
         </li>
 
       </ul>

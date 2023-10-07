@@ -32,6 +32,7 @@ function getProducts()
               <div class='card-body'>
                 <h5 class='card-title'>$product_title</h5>
                 <p class='card-text'>$product_description</p>
+                <p class='card-text'>$product_price<span>$</span></p>
                 <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to cart</a>
                 <a href='index.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -72,6 +73,7 @@ function getAllProducts()
               <div class='card-body'>
                 <h5 class='card-title'>$product_title</h5>
                 <p class='card-text'>$product_description</p>
+                <p class='card-text'>$product_price<span>$</span></p>
                 <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to cart</a>
                 <a href='index.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -116,6 +118,7 @@ function getUniqueCategories()
               <div class='card-body'>
                 <h5 class='card-title'>$product_title</h5>
                 <p class='card-text'>$product_description</p>
+                <p class='card-text'>$product_price<span>$</span></p>
                 <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to cart</a>
                 <a href='index.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -159,6 +162,7 @@ function getUniqueBrands()
               <div class='card-body'>
                 <h5 class='card-title'>$product_title</h5>
                 <p class='card-text'>$product_description</p>
+                <p class='card-text'>$product_price<span>$</span></p>
                 <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to cart</a>
                 <a href='index.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -239,6 +243,7 @@ function searchProduct()
               <div class='card-body'>
                 <h5 class='card-title'>$product_title</h5>
                 <p class='card-text'>$product_description</p>
+                <p class='card-text'>$product_price<span>$</span></p>
                 <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to cart</a>
                 <a href='index.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
               </div>
@@ -282,6 +287,7 @@ function getProductByID()
           <div class='card-body'>
             <h5 class='card-title'>$product_title</h5>
             <p class='card-text'>$product_description</p>
+            <p class='card-text'>$product_price<span>$</span></p>
             <a href='index.php?add_to_cart=$product_id' class='btn btn-info'>Add to cart</a>
             <a href='index.php?product_id=$product_id' class='btn btn-secondary'>View more</a>
           </div>
@@ -355,4 +361,27 @@ function cart_items()
   }
   echo $count_cart_items;
 }
+
+// Total price function
+function totalCartPrice()
+{
+  global $con;
+  $get_ip_address = getIPAddress();
+  $total = 0;
+  $cart_query = "select * from `cart_details` where ip_address='$get_ip_address'";
+  $result = mysqli_query($con, $cart_query);
+  while ($row = mysqli_fetch_array($result)) {
+    $product_id = $row['product_id'];
+    $select_product = "select * from `products` where product_id='$product_id'";
+    $result_products = mysqli_query($con, $select_product);
+
+    while ($row_product_price = mysqli_fetch_array($result_products)) {
+      $product_price = array($row_product_price['product_price']);
+      $product_values = array_sum($product_price);
+      $total += $product_values;
+    }
+  }
+  echo $total;
+}
+
 ?>
