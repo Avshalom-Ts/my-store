@@ -99,7 +99,9 @@ if (isset($_POST['user_register'])) {
   $result = mysqli_query($con, $select_query);
   $rows_count = mysqli_num_rows($result);
   if ($rows_count > 0) {
-    echo "<script>alert('This username alredy exist.!!');</script>";
+    echo "<script>alert('This username or email alredy exist.!!');</script>";
+  } else if ($user_password != $conf_user_password) {
+    echo "<script>alert('Passwords dont match.!!');</script>";
   } else {
     // Insert Query
     move_uploaded_file($user_image_tmp, "./user_images/$user_image");
