@@ -2,6 +2,7 @@
 include('./includes/connect.php');
 include('functions/common_function.php');
 include('./includes/header.php');
+session_start();
 ?>
 
 
@@ -20,14 +21,32 @@ include('./includes/header.php');
     <!-- Second child -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Welcome Guest</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./users/user_login.php">Login</a>
-        </li>
+        <?php
+        if (!isset($_SESSION['username'])) {
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='./users/user_login.php'>Welcome Guest</a>
+        </li>";
+        } else {
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='./users/profile.php'>Welcome " . $_SESSION['username'] . "</a>
+        </li>";
+        }
+        if (!isset($_SESSION['username'])) {
+          // echo $_SESSION['username'];
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='./users/user_login.php'>Login</a>
+        </li>";
+        } else {
+          echo "<li class='nav-item'>
+          <a class='nav-link' href='./users/logout.php'>Logout</a>
+        </li>";
+        }
+        ?>
       </ul>
     </nav>
+    <!-- <form action='./users/logout.php'>
+      <input type='submit' class='nav-link' value='Logout'>
+    </form> -->
 
     <!-- Third child -->
     <div class="bg-light">

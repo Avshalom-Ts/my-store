@@ -15,7 +15,7 @@
           <a class="nav-link" href="index.php?dispaly_all">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="./users/user_registration.php">Register</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
