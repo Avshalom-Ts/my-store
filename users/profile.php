@@ -71,21 +71,21 @@ session_start();
         <?php
         if (!isset($_SESSION['username'])) {
           echo "<li class='nav-item'>
-          <a class='nav-link' href='../users/user_login.php'>Welcome Guest</a>
+          <a class='nav-link' href='./user_login.php'>Welcome Guest</a>
         </li>";
         } else {
           echo "<li class='nav-item'>
-          <a class='nav-link' href='./users/profile.php'>Welcome " . $_SESSION['username'] . "</a>
+          <a class='nav-link' href='./profile.php'>Welcome " . $_SESSION['username'] . "</a>
         </li>";
         }
         if (!isset($_SESSION['username'])) {
           // echo $_SESSION['username'];
           echo "<li class='nav-item'>
-          <a class='nav-link' href='../users/user_login.php'>Login</a>
+          <a class='nav-link' href='./user_login.php'>Login</a>
         </li>";
         } else {
           echo "<li class='nav-item'>
-          <a class='nav-link' href='../users/logout.php'>Logout</a>
+          <a class='nav-link' href='./logout.php'>Logout</a>
         </li>";
         }
         ?>
@@ -106,23 +106,33 @@ session_start();
         <li class="nav-item bg-info">
           <a class="nav-link text-light" aria-current="page" href="#"><h4>Your Profile</h4></a>
         </li>
-        <li class="nav-item bg-info">
-          <img src="../images/ai.png" alt="user_avatar" class="profile_img">
+
+        <?php
+        $username = $_SESSION['username'];
+        $user_image = "select * from `user_table` where username='$username'";
+        $result_image = mysqli_query($con, $user_image);
+        $row_image = mysqli_fetch_array($result_image);
+        $user_image = $row_image['user_image'];
+        echo "<li class='nav-item bg-info'>
+          <img src='./user_images/$user_image' alt='user_avatar' class='profile_img'>
+        </li>";
+        ?>
+
+        
+        <li class="nav-item">
+          <a class="nav-link text-light" aria-current="page" href="profile.php">Pending orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="#">Pending orders</a>
+          <a class="nav-link text-light" aria-current="page" href="profile.php?edit_account">Edit account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="#">Edit account</a>
+          <a class="nav-link text-light" aria-current="page" href="profile.php?my_orders">My orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="#">My orders</a>
+          <a class="nav-link text-light" aria-current="page" href="profile.php?delete_account">Delete account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="#">Delete account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="#">Logout</a>
+          <a class="nav-link text-light" aria-current="page" href="logout.php">Logout</a>
         </li>
         </ul>
       </div>
