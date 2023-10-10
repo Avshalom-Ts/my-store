@@ -384,4 +384,28 @@ function totalCartPrice()
   echo $total;
 }
 
+function getUserOrderDetails()
+{
+  global $con;
+  $username = $_SESSION['username'];
+  $get_details = "select * from `user_table` where username='$username'";
+  $result_query = mysqli_query($con, $get_details);
+  while ($row_query = mysqli_fetch_array($result_query)) {
+    $user_id = $row_query['user_id'];
+    // echo $user_id;
+    if (!isset($_GET['edit_account']) && !isset($_GET['my_orders']) && !isset($_GET['delete_account'])) {
+      $get_orders_query = "select * from `user_orders` where user_id=$user_id and order_status='pending'";
+      $result_orders_query = mysqli_query($con, $get_orders_query);
+      $row_count = mysqli_num_rows($result_orders_query);
+      if ($row_count > 0) {
+        echo "<h3 class='text-center py-5'>You have <span class='text-danger'>$row_count</span> pending orders.!!</h3>
+        <h5 class='text-center'><a class='btn btn-info text-decoration-none' href='profile.php?my_orders'>Orders details</a></h5>";
+      } else {
+        echo "<h3 class='text-center py-5'>You dont have pending orders.!!</h3>
+        <h5 class='text-center'><a class='btn btn-info text-decoration-none' href='../index.php'>Continue shoping</a></h5>";
+      }
+    }
+  }
+}
+
 ?>

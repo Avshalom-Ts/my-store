@@ -93,10 +93,10 @@ session_start();
     </nav>
     
     <!-- Third child -->
-    <div class="bg-light">
+    <!-- <div class="bg-light">
       <h3 class="text-center">My Store</h3>
       <p class="text-center m-0">Communications is at the heart of e-commerce and community</p>
-    </div>
+    </div> -->
 
     <!-- Fourth child -->
     <div class="row">
@@ -136,7 +136,13 @@ session_start();
         </li>
         </ul>
       </div>
-      <div class="col-md-10"></div>
+      <div class="col-md-10">
+
+      <?php
+      getUserOrderDetails();
+      ?>
+
+      </div>
     </div>
 
 
