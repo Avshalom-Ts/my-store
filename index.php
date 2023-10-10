@@ -51,7 +51,7 @@ session_start();
     <!-- Third child -->
     <div class="bg-light">
       <h3 class="text-center">My Store</h3>
-      <p class="text-center">Communications is at the heart of e-commerce and community</p>
+      <p class="text-center m-0">Communications is at the heart of e-commerce and community</p>
     </div>
 
     <!-- Fourth child -->
@@ -77,7 +77,7 @@ session_start();
       </div>
 
       <!-- SideNav Column-->
-      <div class="col-md-2 bg-secondary p-0">
+      <div class="col-md-2 bg-secondary p-0" style="height:100vh;">
         <!-- Brands to be displayed -->
         <ul class="navbar-nav me-auto text-center">
           <li class="nav-item bg-info">

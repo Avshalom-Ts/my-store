@@ -6,6 +6,7 @@ session_start();
 ?>
 
 
+
   <!-- Navbar -->
   <div class="container-fluid p-0">
     <!-- first child -->
@@ -133,37 +134,37 @@ session_start();
                 $total_price += $product_values;
                 $subtotal += $total_price;
                 ?>
-                                                                    <tr>
-                                                                    <td><?php echo $product_title; ?></td>
-                                                                    <td>
-                                                                    <img style="width:100%;height: 60px;object-fit: contain;" src="./admin/product_images/<?php echo $product_image1; ?>" alt="product_image">
-                                                                    <?php echo $product_image1; ?>
-                                                                    </td>
-                                                                    <td>
-                                                                    <input type="number" value="<?php echo $product_qty; ?>" class="form-control" name="qty">
-                                                                    </td>
-                                                                    <?php
-                                                                    $get_ip_address = getIPAddress();
-                                                                    if (isset($_POST['update_cart'])) {
-                                                                      $quantity = $_POST['qty'];
-                                                                      $update_cart = "update `cart_details` set quantity=$quantity where ip_address='$get_ip_address'";
-                                                                      $result_products_quantity = mysqli_query($con, $update_cart);
-                                                                      $total_price = $total_price * $quantity;
-                                                                      echo "<script>window.open('cart.php','_self')</script>";
-                                                                    }
-                                                                    ?>
-                                                                    <td>
-                                                                    <?php echo $total_price; ?>/-
-                                                                    </td>
-                                                                    <td>
-                                                                    <input type="checkbox" name="remove_item[]" value="<?php echo $product_id ?>">
-                                                                    </td>
-                                                                    <td >
-                                                                    <input type="submit" class="btn btn-info" value="Update" name="update_cart">
-                                                                    <input type="submit" class="btn btn-secondary" value="Remove" name="remove_cart">
-                                                                    </td>
-                                                                    </tr>
-                                                                    <?php
+                                                                                      <tr>
+                                                                                      <td><?php echo $product_title; ?></td>
+                                                                                      <td>
+                                                                                      <img style="width:100%;height: 60px;object-fit: contain;" src="./admin/product_images/<?php echo $product_image1; ?>" alt="product_image">
+                                                                                      <?php echo $product_image1; ?>
+                                                                                      </td>
+                                                                                      <td>
+                                                                                      <input type="number" value="<?php echo $product_qty; ?>" class="form-control" name="qty">
+                                                                                      </td>
+                                                                                      <?php
+                                                                                      $get_ip_address = getIPAddress();
+                                                                                      if (isset($_POST['update_cart'])) {
+                                                                                        $quantity = $_POST['qty'];
+                                                                                        $update_cart = "update `cart_details` set quantity=$quantity where ip_address='$get_ip_address'";
+                                                                                        $result_products_quantity = mysqli_query($con, $update_cart);
+                                                                                        $total_price = $total_price * $quantity;
+                                                                                        echo "<script>window.open('cart.php','_self')</script>";
+                                                                                      }
+                                                                                      ?>
+                                                                                      <td>
+                                                                                      <?php echo $total_price; ?>/-
+                                                                                      </td>
+                                                                                      <td>
+                                                                                      <input type="checkbox" name="remove_item[]" value="<?php echo $product_id ?>">
+                                                                                      </td>
+                                                                                      <td >
+                                                                                      <input type="submit" class="btn btn-info" value="Update" name="update_cart">
+                                                                                      <input type="submit" class="btn btn-secondary" value="Remove" name="remove_cart">
+                                                                                      </td>
+                                                                                      </tr>
+                                                                                      <?php
               }
             }
           } else {
@@ -176,12 +177,12 @@ session_start();
       <?php
       if ($result_count > 0) {
         ?>
-                                    <div class="d-flex gap-2">
-                                          <h4 class="px-3">Subtotal:<strong class="text-info"><?php echo $subtotal ?>/-</strong></h4>
-                                          <a class="btn btn-info" href="index.php">Continue shoping</a>
-                                          <a class="btn btn-secondary" href="./users/checkout.php">Checkout</a>
-                                        </div>
-                              <?php
+                                          <div class="d-flex gap-2">
+                                                <h4 class="px-3">Subtotal:<strong class="text-info"><?php echo $subtotal ?>/-</strong></h4>
+                                                <a class="btn btn-info" href="index.php">Continue shoping</a>
+                                                <a class="btn btn-secondary" href="./users/checkout.php">Checkout</a>
+                                              </div>
+                                    <?php
       }
       ?>
     </div>
