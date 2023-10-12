@@ -101,7 +101,7 @@ session_start();
     <!-- Fourth child -->
     <div class="row">
       <!-- Side navbar -->
-      <div class="col-md-2 p-0">
+      <div class="col-2 p-0">
         <ul class="navbar-nav bg-secondary text-center" style="height:100vh;">
         <li class="nav-item bg-info">
           <a class="nav-link text-light" aria-current="page" href="#"><h4>Your Profile</h4></a>
@@ -109,6 +109,9 @@ session_start();
 
         <?php
         $username = $_SESSION['username'];
+        if (!$username) {
+          echo "<script>window.open('../index.php','_self')</script>";
+        }
         $user_image = "select * from `user_table` where username='$username'";
         $result_image = mysqli_query($con, $user_image);
         $row_image = mysqli_fetch_array($result_image);
@@ -136,10 +139,13 @@ session_start();
         </li>
         </ul>
       </div>
-      <div class="col-md-10">
+      <div class="col-10">
 
       <?php
       getUserOrderDetails();
+      if (isset($_GET['edit_account'])) {
+        include('edit_account.php');
+      }
       ?>
 
       </div>
@@ -153,7 +159,7 @@ session_start();
 
 
     <!-- Botstrap JS link -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></>
 </body>
 
 </html>
