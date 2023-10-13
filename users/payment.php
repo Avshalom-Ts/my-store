@@ -48,6 +48,9 @@ include('../functions/common_function.php');
         </a>
       </div>
     </div>
+    <div class="row d-flex justify-content-center align-items-center mt-5">
+      <a href="../index.php" class="btn btn-info">Continue Shoping</a>
+    </div>
   </div>
 </body>
 
