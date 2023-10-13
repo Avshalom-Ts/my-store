@@ -45,9 +45,18 @@ $user_id = $user_row['user_id'];
         <td>$total_products</td>
         <td>$invoice_num</td>
         <td>$order_date</td>
-        <td>$order_status</td>
-        <td><a href='confirm_payment.php' class='btn btn-success'>Confirm</a></td>
-      </tr>";
+        <td>$order_status</td>";
+        ?>
+
+            <?php
+            if ($order_status == 'complete') {
+              echo "<td>Paid</td>
+          </tr>";
+            } else {
+              echo "<td><a href='confirm_payment.php?order_id=$order_id' class='btn btn-success'>Confirm</a></td>
+          </tr>";
+            }
+            ;
       }
       ?>
       

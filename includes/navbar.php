@@ -14,9 +14,13 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?dispaly_all">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./users/user_registration.php">Register</a>
-        </li>
+          <?php
+          // if (isset($_SESSION['username'])) {
+          //   echo "<li class='nav-item'><a class='nav-link' href='./users/profile.php'>My profile</a></li>";
+          // } else {
+          //   echo "<li class='nav-item'><a class='nav-link' href='./users/user_registration.php'>Register</a></li>";
+          // }
+          ?>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>
