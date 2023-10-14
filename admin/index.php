@@ -27,7 +27,7 @@ include('../includes/header.php');
           <button class="my-3"><a href="index.php?view_brands" class="nav-link text-light bg-info my-1">View Brands</a></button>
           <button class="my-3"><a href="index.php?view_orders" class="nav-link text-light bg-info my-1">All Orders</a></button>
           <button class="my-3"><a href="index.php?view_payments" class="nav-link text-light bg-info my-1">All Payments</a></button>
-          <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">All Users</a></button>
+          <button class="my-3"><a href="index.php?view_users" class="nav-link text-light bg-info my-1">All Users</a></button>
           <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">Logout</a></button>
         </div>
       </div>
@@ -81,6 +81,9 @@ include('../includes/header.php');
       }
       if (isset($_GET['view_payments'])) {
         include('view_payments.php');
+      }
+      if (isset($_GET['view_users'])) {
+        include('view_users.php');
       }
       ?>
     </div>
