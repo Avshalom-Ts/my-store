@@ -42,8 +42,6 @@ if (isset($_POST['insert_product'])) {
 ?>
 
 
-
-<body class="bg-light">
   <div class="container mt-3">
     <h1 class="text-center">Insert Products</h1>
     <!-- <div class="flex">
@@ -133,7 +131,5 @@ if (isset($_POST['insert_product'])) {
       <div class="form-outline mb-4 w-50  m-auto">
         <input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="insert Product">
       </div>
-
-
     </form>
   </div>

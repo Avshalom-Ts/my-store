@@ -81,6 +81,7 @@ if (isset($_POST['update_product'])) {
 
 ?>
 
+
 <div class="container my-5">
   <h3 class="text-center">Edit Product</h3>
   <form action="" method="post" enctype="multipart/form-data">
