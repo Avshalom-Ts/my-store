@@ -25,7 +25,7 @@ include('../includes/header.php');
           <button class="my-3"><a href="index.php?view_categories" class="nav-link text-light bg-info my-1">View Categories</a></button>
           <button class="my-3"><a href="index.php?insert_brand" class="nav-link text-light bg-info my-1">Insert Brands</a></button>
           <button class="my-3"><a href="index.php?view_brands" class="nav-link text-light bg-info my-1">View Brands</a></button>
-          <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">All Orders</a></button>
+          <button class="my-3"><a href="index.php?view_orders" class="nav-link text-light bg-info my-1">All Orders</a></button>
           <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">All Payments</a></button>
           <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">All Users</a></button>
           <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">Logout</a></button>
@@ -72,6 +72,9 @@ include('../includes/header.php');
       }
       if (isset($_GET['delete_products'])) {
         include('delete_product.php');
+      }
+      if (isset($_GET['view_orders'])) {
+        include('view_orders.php');
       }
       ?>
     </div>
