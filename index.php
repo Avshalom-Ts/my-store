@@ -8,6 +8,14 @@ session_start();
 
   <!-- Navbar -->
   <div class="container-fluid p-0">
+    <!-- first child -->
+    <?php
+    include('./includes/navbar.php');
+
+    // Call to cart function
+    cart();
+    ?>
+
 
 
     <!-- Second child -->
@@ -102,4 +110,16 @@ session_start();
     <!-- last child -->
     <?php
     include('./includes/footer.php');
+
+
+    // Render the IP address
+    // $ip = getIPAddress();
+    // echo 'User Real IP Address - ' . $ip;
     ?>
+
+
+    <!-- Botstrap JS link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>

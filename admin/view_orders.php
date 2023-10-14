@@ -1,45 +1,44 @@
 <h3 class="text-center">All Orders</h3>
-
-<table class="table table-bordered mt-5 text-center">
-  <thead class="table-info">
-    <tr>
-      <th>Order ID</th>
-      <th>Product Title</th>
-      <th>Product Image</th>
-      <th>Product Price</th>
-      <th>Total Sold</th>
-      <th>Status</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody class="table-secondary">
     <?php
-    // $get_products = "select * from `products`";
-    // $result = mysqli_query($con, $get_products);
-    // while ($row_product = mysqli_fetch_assoc($result)) {
-    //   $product_id = $row_product['product_id'];
-    //   $product_title = $row_product['product_title'];
-    //   $product_image1 = $row_product['product_image1'];
-    //   $product_price = $row_product['product_price'];
-    //   $status = $row_product['status'];
-    
-    //   $get_count = "select * from `orders_pending` where product_id=$product_id";
-    //   $result_count = mysqli_query($con, $get_count);
-    //   $rows_count = mysqli_num_rows($result_count);
-    
-    //   echo "<tr>
-    //   <td>$product_id</td>
-    //   <td>$product_title</td>
-    //   <td><img src='product_images/$product_image1' alt='product_image' style='width: 50px;'></td>
-    //   <td>$product_price</td>
-    //   <td>$rows_count</td>
-    //   <td>$status</td>
-    //   <td><a href='index.php?edit_products=$product_id' class='text-info'><i class='fa-solid fa-pen-to-square'></i></a></td>
-    //   <td><a href='index.php?delete_products=$product_id' class='text-danger'><i class='fa-solid fa-trash'></i></a></td>
-    // </tr>";
-    // }
+    $get_orders_query = "select * from `user_orders`";
+    $get_orders_result = mysqli_query($con, $get_orders_query);
+    $get_orders_rows_count = mysqli_num_rows($get_orders_result);
+    if ($get_orders_rows_count == 0) {
+      echo "<h2 class='text-danger mt-5 text-center'>No Orders to show</h2>";
+    } else {
+      echo "<table class='table table-bordered mt-5 text-center'>
+              <thead class='table-info'>
+                <tr>
+                  <th>No</th>
+                  <th>Due Amount</th>
+                  <th>Invoice Number</th>
+                  <th>Total Products</th>
+                  <th>Order Date</th>
+                  <th>Status</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+            <tbody class='table-secondary'>";
+      while ($get_orders_row = mysqli_fetch_assoc($get_orders_result)) {
+        $order_id = $get_orders_row['order_id'];
+        $amount_due = $get_orders_row['amount_due'];
+        $invoice_number = $get_orders_row['invoice_number'];
+        $total_products = $get_orders_row['total_products'];
+        $order_date = $get_orders_row['order_date'];
+        $order_status = $get_orders_row['order_status'];
+
+        echo "
+            <tr>
+              <td>$order_id</td>
+              <td>$amount_due</td>
+              <td>$invoice_number</td>
+              <td>$total_products</td>
+              <td>$order_date</td>
+              <td>$order_status</td>
+              <td><a href='index.php?delete_order=$order_id' class='text-danger'><i class='fa-solid fa-trash'></i></a></td>
+            </tr>";
+      }
+    }
     ?>
-    
   </tbody>
 </table>

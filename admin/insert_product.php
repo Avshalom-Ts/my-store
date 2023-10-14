@@ -41,7 +41,6 @@ if (isset($_POST['insert_product'])) {
 }
 ?>
 
-
   <div class="container mt-3">
     <h1 class="text-center">Insert Products</h1>
     <!-- <div class="flex">
