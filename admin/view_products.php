@@ -35,7 +35,7 @@
       <td>$product_price</td>
       <td>$rows_count</td>
       <td>$status</td>
-      <td><a href='index.php?edit_products' class='text-info'><i class='fa-solid fa-pen-to-square'></i></a></td>
+      <td><a href='index.php?edit_products=$product_id' class='text-info'><i class='fa-solid fa-pen-to-square'></i></a></td>
       <td><a href='' class='text-danger'><i class='fa-solid fa-trash'></i></a></td>
     </tr>";
     }
