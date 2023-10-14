@@ -22,26 +22,26 @@
       <td>$brand_title</td>
       <td><a href='index.php?edit_brand=$brand_id' class='text-info'><i class='fa-solid fa-pen-to-square'></i></a></td>
       <td><a href='' class='text-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='fa-solid fa-trash'></i></a></td>
-    </tr>
-    
-    <!-- Modal -->
-    <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-      <div class='modal-dialog'>
-        <div class='modal-content'>
-          <div class='modal-header'>
-            <h1 class='modal-title fs-5' id='exampleModalLabel'>Modal title</h1>
-            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-          </div>
-          <div class='modal-body'>
-            Are you sure you want to delete this Brand ? <strong>$brand_title</strong>
-          </div>
-          <div class='modal-footer'>
-            <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>No</button>
-            <a href='index.php?delete_brand=$brand_id' type='button' class='btn btn-primary'>Delete</a>
-          </div>
-        </div>
-      </div>
-    </div>";
+    </tr>";
+
+      // <!-- Modal -->
+      // <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+      //   <div class='modal-dialog'>
+      //     <div class='modal-content'>
+      //       <div class='modal-header'>
+      //         <h1 class='modal-title fs-5' id='exampleModalLabel'>Modal title</h1>
+      //         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      //       </div>
+      //       <div class='modal-body'>
+      //         Are you sure you want to delete this Brand ? <strong>$brand_title</strong>
+      //       </div>
+      //       <div class='modal-footer'>
+      //         <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>No</button>
+      //         <a href='index.php?delete_brand=$brand_id' type='button' class='btn btn-primary'>Delete</a>
+      //       </div>
+      //     </div>
+      //   </div>
+      // </div>";
     }
     ?>
     
@@ -50,7 +50,7 @@
 
 
 <!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -58,12 +58,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete this brand ?
+        Are you sure you want to delete this brand ? <?php echo $brand_title ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <a href='index.php?delete_brand=$brand_id' type="button" class="btn btn-primary">Delete</a>
+        <a href='index.php?delete_brand=<?php echo $brand_id ?>' type="button" class="btn btn-primary">Delete</a>
       </div>
     </div>
   </div>
-</div> -->
+</div>
