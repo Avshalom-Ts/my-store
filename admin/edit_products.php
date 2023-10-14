@@ -70,9 +70,9 @@ if (isset($_POST['update_product'])) {
     move_uploaded_file($product_image3_tmp, "./product_images/$product_image3");
   }
 
-  $update_product = "update `products` set product_title='$product_title', product_description='$product_description', product_keywords='$product_keywords', category_id=$category_id, brand_id=$brand_id,product_image1='$product_image1', product_price=$product_price where product_id=$product_id";
+  $update_product = "update `products` set product_title='$product_title', product_description='$product_description', product_keywords='$product_keywords', category_id=$category_id, brand_id=$brand_id,product_image1='$product_image1', product_price=$product_price,date=NOW() where product_id=$product_id";
   $update_query = mysqli_query($con, $update_product);
-  if ($update_product) {
+  if ($update_query) {
     echo "<script>alert('Product Updated successfully.!!')</script>";
     echo "<script>window.open('index.php?edit_products=$product_id','_self')</script>";
   }

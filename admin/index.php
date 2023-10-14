@@ -4,23 +4,7 @@ include('../functions/common_function.php');
 include('../includes/header.php');
 ?>
 
-  <!-- Navbar -->
   <div class="container-fluid p-0">
-    <!-- First child -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-info">
-      <div class="container-fluid">
-        <a class="nav-link" href="/my-store/admin/">
-          <img src="../images/AzLogo48px.png" alt="logo" class="logo">
-        </a>
-        <nav class="navbar navbar-expand-lg">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="#" class="nav-link">Welcome Guest</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </nav> -->
 
     <!-- Second child -->
     <div class="bg-light">
@@ -68,9 +52,12 @@ include('../includes/header.php');
       if (isset($_GET['edit_products'])) {
         include('edit_products.php');
       }
+      if (isset($_GET['delete_products'])) {
+        include('delete_product.php');
+      }
       ?>
     </div>
 
 <?php
-include('../includes/footer.php');
+// include('../includes/footer.php');
 ?>
