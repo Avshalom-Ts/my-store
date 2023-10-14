@@ -49,6 +49,9 @@ include('../includes/header.php');
       if (isset($_GET['edit_category'])) {
         include('edit_category.php');
       }
+      if (isset($_GET['delete_category'])) {
+        include('delete_category.php');
+      }
       if (isset($_GET['insert_brand'])) {
         include('insert_brands.php');
       }
