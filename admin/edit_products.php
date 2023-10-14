@@ -6,18 +6,39 @@ $product_id = $_GET['edit_products'];
 $select_product = "select * from `products` where product_id=$product_id";
 $product_query = mysqli_query($con, $select_product);
 $product_row = mysqli_fetch_assoc($product_query);
+
 // Save all fields in variables
 $product_title = $product_row['product_title'];
 $product_description = $product_row['product_description'];
 $product_keywords = $product_row['product_keywords'];
+
+
 // Select all categories
 $category_id = $product_row['category_id'];
 $select_categories = "select * from `categories`";
 $select_categories_query = mysqli_query($con, $select_categories);
+
+// Current category
+$select_current_category = "select * from `categories` where category_id=$category_id";
+$current_category_query = mysqli_query($con, $select_current_category);
+$current_category_row = mysqli_fetch_assoc($current_category_query);
+$current_category_id = $current_category_row['category_id'];
+$current_category_title = $current_category_row['category_title'];
+// echo $current_category_title, $current_category_id;
+
 // Select all brands
 $brand_id = $product_row['brand_id'];
 $select_brands = "select * from `brands`";
 $select_brands_query = mysqli_query($con, $select_brands);
+
+// Current brand
+$select_current_brand = "select * from `brands` where brand_id=$brand_id";
+$current_brand_query = mysqli_query($con, $select_current_brand);
+$current_brand_row = mysqli_fetch_assoc($current_brand_query);
+$current_brand_id = $current_brand_row['brand_id'];
+$current_brand_title = $current_brand_row['brand_title'];
+// echo $current_brand_title, $current_brand_id;
+
 
 $product_image1 = $product_row['product_image1'];
 $product_image2 = $product_row['product_image2'];
@@ -53,6 +74,7 @@ if (isset($_POST['update_product'])) {
   $update_query = mysqli_query($con, $update_product);
   if ($update_product) {
     echo "<script>alert('Product Updated successfully.!!')</script>";
+    echo "<script>window.open('index.php?edit_products=$product_id','_self')</script>";
   }
 }
 
@@ -78,10 +100,13 @@ if (isset($_POST['update_product'])) {
       <label for="product_category" class="form-label">Product Category</label>
       <select name="product_category" id="product_category" class="form-select">
         <?php
+        echo "<option value='$current_category_id'>$current_category_title</option>";
         while ($row_categories = mysqli_fetch_array($select_categories_query)) {
           $category_id = $row_categories['category_id'];
           $category_title = $row_categories['category_title'];
-          echo "<option value='$category_id'>$category_title</option>";
+          if ($category_id != $current_category_id) {
+            echo "<option value='$category_id'>$category_title</option>";
+          }
         }
         ?>
         
@@ -90,15 +115,16 @@ if (isset($_POST['update_product'])) {
     <div class="form-outline w-50 mx-auto mb-4">
       <label for="product_brands" class="form-label">Product Brands</label>
       <select name="product_brands" id="product_brands" class="form-select">
-        
           <?php
-          while ($row_brands = mysqli_fetch_array($select_brands_query)) {
-            $brands_id = $row_brands['brand_id'];
-            $brands_title = $row_brands['brand_title'];
-            echo "<option value='$brands_id'>$brands_title</option>";
+          echo "<option value='$current_brand_id'>$current_brand_title</option>";
+          while ($row_brand = mysqli_fetch_array($select_brands_query)) {
+            $brand_id = $row_brand['brand_id'];
+            $brand_title = $row_brand['brand_title'];
+            if ($current_brand_id != $brand_id) {
+              echo "<option value='$brand_id'>$brand_title</option>";
+            }
           }
           ?>
-        
       </select>
     </div>
     <div class="form-outline w-50 mx-auto mb-4">
