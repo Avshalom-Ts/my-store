@@ -1,23 +1,9 @@
 <?php
 include('../includes/connect.php');
 include('../functions/common_function.php');
+include('../includes/header.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS link -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style.css">
-  <!-- Font awesome link -->
-  <script src="https://kit.fontawesome.com/c6bdbdbc60.js" crossorigin="anonymous"></script>
-  <title>Admin Dashboard</title>
-</head>
-
-<body>
   <!-- Navbar -->
   <div class="container-fluid p-0">
     <!-- First child -->
@@ -49,7 +35,7 @@ include('../functions/common_function.php');
           <p class="text-light text-center">Admin name</p>
         </div>
         <div class="button text-center">
-          <button class="my-3"><a href="insert_product.php" class="nav-link text-light bg-info my-1">Insert Products</a></button>
+          <button class="my-3"><a href="index.php?insert_product" class="nav-link text-light bg-info my-1">Insert Products</a></button>
           <button class="my-3"><a href="index.php?view_products" class="nav-link text-light bg-info my-1">View Products</a></button>
           <button class="my-3"><a href="index.php?insert_category" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
           <button class="my-3"><a href="" class="nav-link text-light bg-info my-1">View Categories</a></button>
@@ -65,8 +51,11 @@ include('../functions/common_function.php');
 
 
     <!-- Forth child -->
-    <div class="container my-3">
+    <div class="container">
       <?php
+      if (isset($_GET['insert_product'])) {
+        include('insert_product.php');
+      }
       if (isset($_GET['insert_category'])) {
         include('insert_categories.php');
       }
@@ -76,14 +65,20 @@ include('../functions/common_function.php');
       if (isset($_GET['view_products'])) {
         include('view_products.php');
       }
+      if (isset($_GET['edit_products'])) {
+        include('edit_products.php');
+      }
       ?>
     </div>
 
     <!-- last child -->
-    <div class="bg-info p-3 text-center footer container-fluid">
+    <!-- <div class="bg-info p-3 text-center footer container-fluid">
       <p>All rights reserved &#x0040; Avshalom-projects 2023 ab</p>
     </div>
-  </div>
+  </div> -->
+  <?php
+  include('../includes/footer.php');
+  ?>
 
 
 

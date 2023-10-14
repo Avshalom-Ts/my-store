@@ -43,26 +43,12 @@ if (isset($_POST['insert_product'])) {
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS link -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style.css">
-  <!-- Font awesome link -->
-  <script src="https://kit.fontawesome.com/c6bdbdbc60.js" crossorigin="anonymous"></script>
-  <!-- CSS file -->
-  <link rel="stylesheet" href="../style.css">
-  <title>Insert Products - Admin Dashboard</title>
-</head>
 <body class="bg-light">
   <div class="container mt-3">
     <h1 class="text-center">Insert Products</h1>
-    <div class="flex">
+    <!-- <div class="flex">
       <a href="http://localhost/my-store/admin" class="btn btn-info">Back to Admin panel</a>
-    </div>
+    </div> -->
 
     <!-- Form create product -->
     <form action="" method="post" enctype="multipart/form-data">
@@ -151,5 +137,3 @@ if (isset($_POST['insert_product'])) {
 
     </form>
   </div>
-</body>
-</html>

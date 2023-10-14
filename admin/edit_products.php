@@ -34,11 +34,38 @@
       </select>
     </div>
     <div class="form-outline w-50 mx-auto mb-4">
-      <label for="product_image1" class="form-label">Product Image 1</label>
       <div class="d-flex">
-        <input type="file" id="product_image1" name="product_image1" class="form-control w-90 m-auto">
-        <img src="product_images/ananas.jpg" alt="product image" style="width:50%;">
+        <div>
+          <label for="product_image1" class="form-label">Product Image 1</label>
+          <input type="file" id="product_image1" name="product_image1" class="form-control w-90 m-auto">
+        </div>
+        <img src="product_images/ananas.jpg" alt="product image" style="width:25%;">
       </div>
+    </div>
+    <div class="form-outline w-50 mx-auto mb-4">
+      <div class="d-flex">
+        <div>
+          <label for="product_image2" class="form-label">Product Image 2</label>
+          <input type="file" id="product_image2" name="product_image2" class="form-control w-90 m-auto">
+        </div>
+        <img src="product_images/ananas.jpg" alt="product image" style="width:25%;">
+      </div>
+    </div>
+    <div class="form-outline w-50 mx-auto mb-4">
+      <div class="d-flex">
+        <div>
+          <label for="product_image3" class="form-label">Product Image 3</label>
+          <input type="file" id="product_image3" name="product_image3" class="form-control w-90 m-auto">
+        </div>
+        <img src="product_images/ananas.jpg" alt="product image" style="width:25%;">
+      </div>
+    </div>
+    <div class="form-outline w-50 mx-auto mb-4">
+      <label for="product_price" class="form-label">Product Price</label>
+      <input type="text" id="product_price" name="product_price" class="form-control" required placeholder="Product Price">
+    </div>
+    <div class="w-50 mx-auto mb-4">
+      <input type="submit" name="update_product" value="Update Product" class="btn btn-info">
     </div>
   </form>
 </div>
