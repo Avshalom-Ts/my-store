@@ -58,6 +58,9 @@ include('../includes/header.php');
       if (isset($_GET['view_brands'])) {
         include('view_brands.php');
       }
+      if (isset($_GET['edit_brand'])) {
+        include('edit_brand.php');
+      }
       if (isset($_GET['view_products'])) {
         include('view_products.php');
       }
