@@ -1,8 +1,8 @@
 <?php
-include('./includes/connect.php');
-include('functions/common_function.php');
-include('./includes/header.php');
-session_start();
+// include('./includes/connect.php');
+// include('functions/common_function.php');
+// include('./includes/header.php');
+// session_start();
 ?>
 
 <link rel="stylesheet" href="style.css">
@@ -19,73 +19,7 @@ session_start();
     ?>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.php"><img src="./images/AzLogo48px.png" alt="logo" class="logo"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php?dispaly_all">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./users/user_registration.php">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i>
-            <sup>
-              <?php
-              cart_items();
-              ?>
-            </sup>
-          </a>
-        </li>
-
-      </ul>
-      <form class="d-flex" action="" method="get">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-        <!-- <button class="btn btn-outline-light" type="submit">Search</button> -->
-        <input type="submit" value="Search" class="btn btn-outline-light" name="search_data_product">
-      </form>
-    </div>
-  </div>
-</nav>
-
-    <!-- Second child -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-      <ul class="navbar-nav me-auto">
-        <?php
-        if (!isset($_SESSION['username'])) {
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='./users/user_login.php'>Welcome Guest</a>
-        </li>";
-        } else {
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='./users/profile.php'>Welcome " . $_SESSION['username'] . "</a>
-        </li>";
-        }
-        if (!isset($_SESSION['username'])) {
-          // echo $_SESSION['username'];
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='./users/user_login.php'>Login</a>
-        </li>";
-        } else {
-          echo "<li class='nav-item'>
-          <a class='nav-link' href='./users/logout.php'>Logout</a>
-        </li>";
-        }
-        ?>
-      </ul>
-    </nav>
+    
 
     <!-- Third child -->
     <div class="bg-light">
@@ -135,37 +69,37 @@ session_start();
                 $total_price += $product_values;
                 $subtotal += $total_price;
                 ?>
-                                                                                            <tr>
-                                                                                            <td><?php echo $product_title; ?></td>
-                                                                                            <td>
-                                                                                            <img style="width:100%;height: 60px;object-fit: contain;" src="./admin/product_images/<?php echo $product_image1; ?>" alt="product_image">
-                                                                                            <?php echo $product_image1; ?>
-                                                                                            </td>
-                                                                                            <td>
-                                                                                            <input type="number" value="<?php echo $product_qty; ?>" class="form-control" name="qty">
-                                                                                            </td>
-                                                                                            <?php
-                                                                                            $get_ip_address = getIPAddress();
-                                                                                            if (isset($_POST['update_cart'])) {
-                                                                                              $quantity = $_POST['qty'];
-                                                                                              $update_cart = "update `cart_details` set quantity=$quantity where ip_address='$get_ip_address'";
-                                                                                              $result_products_quantity = mysqli_query($con, $update_cart);
-                                                                                              $total_price = $total_price * $quantity;
-                                                                                              echo "<script>window.open('cart.php','_self')</script>";
-                                                                                            }
-                                                                                            ?>
-                                                                                            <td>
-                                                                                            <?php echo $total_price; ?>/-
-                                                                                            </td>
-                                                                                            <td>
-                                                                                            <input type="checkbox" name="remove_item[]" value="<?php echo $product_id ?>">
-                                                                                            </td>
-                                                                                            <td >
-                                                                                            <input type="submit" class="btn btn-info" value="Update" name="update_cart">
-                                                                                            <input type="submit" class="btn btn-secondary" value="Remove" name="remove_cart">
-                                                                                            </td>
-                                                                                            </tr>
-                                                                                            <?php
+                                                                                                                                <tr>
+                                                                                                                                <td><?php echo $product_title; ?></td>
+                                                                                                                                <td>
+                                                                                                                                <img style="width:100%;height: 60px;object-fit: contain;" src="./admin/product_images/<?php echo $product_image1; ?>" alt="product_image">
+                                                                                                                                <?php echo $product_image1; ?>
+                                                                                                                                </td>
+                                                                                                                                <td>
+                                                                                                                                <input type="number" value="<?php echo $product_qty; ?>" class="form-control" name="qty">
+                                                                                                                                </td>
+                                                                                                                                <?php
+                                                                                                                                $get_ip_address = getIPAddress();
+                                                                                                                                if (isset($_POST['update_cart'])) {
+                                                                                                                                  $quantity = $_POST['qty'];
+                                                                                                                                  $update_cart = "update `cart_details` set quantity=$quantity where ip_address='$get_ip_address'";
+                                                                                                                                  $result_products_quantity = mysqli_query($con, $update_cart);
+                                                                                                                                  $total_price = $total_price * $quantity;
+                                                                                                                                  echo "<script>window.open('cart.php','_self')</script>";
+                                                                                                                                }
+                                                                                                                                ?>
+                                                                                                                                <td>
+                                                                                                                                <?php echo $total_price; ?>/-
+                                                                                                                                </td>
+                                                                                                                                <td>
+                                                                                                                                <input type="checkbox" name="remove_item[]" value="<?php echo $product_id ?>">
+                                                                                                                                </td>
+                                                                                                                                <td >
+                                                                                                                                <input type="submit" class="btn btn-info" value="Update" name="update_cart">
+                                                                                                                                <input type="submit" class="btn btn-secondary" value="Remove" name="remove_cart">
+                                                                                                                                </td>
+                                                                                                                                </tr>
+                                                                                                                                <?php
               }
             }
           } else {
@@ -178,12 +112,12 @@ session_start();
       <?php
       if ($result_count > 0) {
         ?>
-                                            <div class="d-flex gap-2">
-                                                  <h4 class="px-3">Subtotal:<strong class="text-info"><?php echo $subtotal ?>/-</strong></h4>
-                                                  <a class="btn btn-info" href="index.php">Continue shoping</a>
-                                                  <a class="btn btn-secondary" href="./users/checkout.php">Checkout</a>
-                                                </div>
-                                      <?php
+                                                        <div class="d-flex gap-2">
+                                                              <h4 class="px-3">Subtotal:<strong class="text-info"><?php echo $subtotal ?>/-</strong></h4>
+                                                              <a class="btn btn-info" href="index.php">Continue shoping</a>
+                                                              <a class="btn btn-secondary" href="./users/checkout.php">Checkout</a>
+                                                            </div>
+                                                  <?php
       }
       ?>
     </div>
