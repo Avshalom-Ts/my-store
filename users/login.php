@@ -19,7 +19,7 @@
   <div class="container-fluid py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-6 d-flex justify-content-center align-items-center">
-        <img src="../images/signin.png" alt="signin" class="image-fluid">
+        <img src="images/signin.png" alt="signin" class="image-fluid">
       </div>
       <div class="col-lg-6 col-sm-12">
         <h2 class="text-center mb-5 text-light">Admin Login</h2>

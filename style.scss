@@ -53,7 +53,7 @@ body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   transition: 0.5s;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 a {
@@ -91,7 +91,7 @@ a {
 }
 
 .header_img img {
-  width: 40px;
+  width: 60px;
 }
 
 .l-navbar {
@@ -194,7 +194,7 @@ a {
   }
 
   .header_img img {
-    width: 45px;
+    width: 60px;
   }
 
   .l-navbar {
