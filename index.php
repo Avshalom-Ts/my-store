@@ -229,6 +229,8 @@ if (isset($_GET['dispaly_all'])) {
           include('cart.php');
         } elseif (isset($_GET['login'])) {
           include('./users/login.php');
+        } elseif (isset($_GET['registration'])) {
+          include('./users/registration.php');
         } else {
           getProducts();
         }

@@ -1,56 +1,115 @@
 <?php
-
+include('includes/connect.php');
+$show_warn_email = "none";
+$show_warn_username = "none";
+$show_warn_passwords = "none";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS link -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <!-- Font awesome link -->
-  <script src="https://kit.fontawesome.com/c6bdbdbc60.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.scss">
-  <title>Admin Registration</title>
-</head>
-<body>
-  <div class="container-fluid py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-6 d-flex justify-content-center align-items-center">
-        <img src="../images/signin.png" alt="signin" class="image-fluid">
-      </div>
-      <div class="col-6">
-        <h2 class="text-center mb-5 text-light">Admin Registration</h2>
-        <form action="" method="post">
-          <div class="form-outline mb-4 w-75 m-auto">
-            <label for="username" class="form-label">Username</label>
-            <input class="form-control" type="text" name="username" id="username" placeholder="Enter Username" required>
-          </div>
-          <div class="form-outline mb-4 w-75 m-auto">
-            <label for="email" class="form-label">Email</label>
-            <input class="form-control" type="email" name="email" id="email" placeholder="Enter Your Email" required>
-          </div>
-          <div class="form-outline mb-4 w-75 m-auto">
-            <label for="password" class="form-label">Password</label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="Enter Your Password" required>
-          </div>
-          <div class="form-outline mb-4 w-75 m-auto">
-            <label for="confirm_password" class="form-label">Confirm Password</label>
-            <input class="form-control" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-          </div>
-          <div class="form-outline mb-4 w-75 m-auto">
-            <input type="submit" value="Register" name="register" class="btn btn-info">
-          </div>
-          <div class="form-outline mb-4 w-75 m-auto">
-            <p class="small text-info">Alredy have an account? <a href="admin_login.php"><strong class="link-danger">Login</strong></a></p>
-          </div>
-        </form>
-      </div>
+<div class="container-fluid">
+  <h2 class="text-center mb-5 text-dark">Registration Page</h2>
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-6 d-flex justify-content-center align-items-center">
+      <img src="images/signin.png" alt="signin" class="image-fluid">
+    </div>
+    <div class="col-6">
+      <form action="" method="post" enctype="multipart/form-data">
+        <!-- Username Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="username" class="form-label">Username</label>
+          <input class="form-control" type="text" name="username" id="username" placeholder="Enter Username" required>
+          <p class="text-danger" style="display:<?php echo $show_warn_username ?>;">Username is taken</p>
+        </div>
+        <!-- Email Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="email" class="form-label">Email</label>
+          <input class="form-control" type="email" name="email" id="email" placeholder="Enter Your Email" required>
+          <p class="text-danger" style="display:<?php echo $show_warn_email ?>;">Email is taken</p>
+        </div>
+        <!-- Image Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="image" class="form-label">Image</label>
+          <input type="file" id="image" class="form-control" required name="image" />
+        </div>
+        <!-- Password Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="password" class="form-label">Password</label>
+          <input class="form-control" type="password" name="password" id="password" placeholder="Enter Your Password" required>
+        </div>
+        <!-- Confirm Password Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="confirm_password" class="form-label">Confirm Password</label>
+          <input class="form-control" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+          <p class="text-danger" style="display:<?php echo $show_warn_passwords ?>;">Passwords not match!</p>
+        </div>
+        <!-- Address Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="address" class="form-label">Address</label>
+          <input type="text" id="address" class="form-control" placeholder="Enter your address" autocomplete="off" required name="address" />
+        </div>
+        <!-- Contact Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" id="phone" class="form-control" placeholder="Enter your phone bumber" autocomplete="off" required name="phone" />
+        </div>
+        <div class="form-outline mb-4 w-75 m-auto">
+          <input type="submit" value="Register" name="register" class="btn btn-info">
+        </div>
+        <div class="form-outline mb-4 w-75 m-auto">
+          <p class="small text-info">Alredy have an account? <a href="index.php?login"><strong class="link-danger">Login</strong></a></p>
+        </div>
+      </form>
     </div>
   </div>
-  <!-- Botstrap JS link -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-</html>
+</div>
+
+
+<?php
+if (isset($_POST['register'])) {
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $conf_password = $_POST['confirm_password'];
+  $hash_password = password_hash($password, PASSWORD_DEFAULT);
+  $address = $_POST['address'];
+  $phone = $_POST['phone'];
+  $image = $_FILES['image']['name'];
+  $image_tmp = $_FILES['image']['tmp_name'];
+  $ip = getIPAddress();
+  $type = "user";
+
+  // Check users table empty
+  $select_all_users_query = "SELECT * FROM `users`";
+  $select_all_users_result = mysqli_query($con, $select_all_users_query);
+  $select_all_users_row_count = mysqli_num_rows($select_all_users_result);
+  if ($select_all_users_row_count == 0) {
+    $type = "super_user";
+  }
+  // Check if user alredy signin with email or username
+  $check_all_users_query = "SELECT * FROM `users` WHERE username='$username' OR email='$email'";
+  $check_all_users_result = mysqli_query($con, $check_all_users_query);
+  $check_all_users_count = mysqli_num_rows($check_all_users_result);
+  if ($check_all_users_count > 0) {
+    $show_warn_email = "block";
+    $show_warn_username = "block";
+  } else {
+    // Check for passwords matches
+    if ($password != $conf_password) {
+      $show_warn_passwords = "block";
+    } else {
+      // Insert the new user
+      // echo "<script>alert('Before creating user.!!');</script>";
+      move_uploaded_file($image_tmp, "./users/user_images/$image");
+      $insert_user_query = "INSERT INTO `users` (username,email,password,avatar,ip,address,phone,type,created) VALUES ('$username','$email','$hash_password','$image','$ip','$address',$phone,'$type',now())";
+      $insert_user_result = mysqli_query($con, $insert_user_query);
+      if ($insert_user_result) {
+        echo "";
+      }
+    }
+  }
+
+
+
+
+}
+
+?>
