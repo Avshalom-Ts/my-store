@@ -5,19 +5,29 @@ $show_warn_username = "none";
 $show_warn_passwords = "none";
 ?>
 
-<div class="container-fluid">
-  <h2 class="text-center mb-5 text-dark">Registration Page</h2>
+<div class="container mb-4">
+  <h2 class="text-center mb-2 text-dark">Registration Page</h2>
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-6 d-flex justify-content-center align-items-center">
       <img src="images/signin.png" alt="signin" class="image-fluid">
     </div>
-    <div class="col-6">
+    <div class="col-6 my-5">
       <form action="" method="post" enctype="multipart/form-data">
         <!-- Username Field -->
         <div class="form-outline mb-4 w-75 m-auto">
           <label for="username" class="form-label">Username</label>
           <input class="form-control" type="text" name="username" id="username" placeholder="Enter Username" required>
           <p class="text-danger" style="display:<?php echo $show_warn_username ?>;">Username is taken</p>
+        </div>
+        <!-- First Name Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="first_name" class="form-label">First Name</label>
+          <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Enter Your First Name" required>
+        </div>
+        <!-- Last Name Field -->
+        <div class="form-outline mb-4 w-75 m-auto">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Enter Your Last Name" required>
         </div>
         <!-- Email Field -->
         <div class="form-outline mb-4 w-75 m-auto">
@@ -66,6 +76,8 @@ $show_warn_passwords = "none";
 <?php
 if (isset($_POST['register'])) {
   $username = $_POST['username'];
+  $first_name = $_POST['first_name'];
+  $last_name = $_POST['last_name'];
   $email = $_POST['email'];
   $password = $_POST['password'];
   $conf_password = $_POST['confirm_password'];
@@ -99,10 +111,11 @@ if (isset($_POST['register'])) {
       // Insert the new user
       // echo "<script>alert('Before creating user.!!');</script>";
       move_uploaded_file($image_tmp, "./users/user_images/$image");
-      $insert_user_query = "INSERT INTO `users` (username,email,password,avatar,ip,address,phone,type,created) VALUES ('$username','$email','$hash_password','$image','$ip','$address',$phone,'$type',now())";
+      $insert_user_query = "INSERT INTO `users` (username,first_name,last_name,email,password,avatar,ip,address,phone,type,created) VALUES ('$username','$first_name','$last_name','$email','$hash_password','$image','$ip','$address',$phone,'$type',now())";
       $insert_user_result = mysqli_query($con, $insert_user_query);
       if ($insert_user_result) {
-        echo "";
+        $_SESSION['username'] = $user_username;
+        echo "<script>window.open('index.php?login','_self');</script>";
       }
     }
   }

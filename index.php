@@ -1,7 +1,6 @@
 <?php
 include('./includes/connect.php');
 include('functions/common_function.php');
-include('./includes/header.php');
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -14,6 +13,8 @@ $active_link_all_products = "";
 if (isset($_GET['dispaly_all'])) {
   $active_link_all_products = "active_link";
 }
+
+$page_title = "Home Page";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,9 +25,11 @@ if (isset($_GET['dispaly_all'])) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- Icons -->
+  <!-- Font awesome link -->
+  <script src="https://kit.fontawesome.com/c6bdbdbc60.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.scss">
-  <title>Home page</title>
+  <title><?php echo $page_title ?></title>
 </head>
 
 <!-- Layout -->
@@ -102,11 +105,13 @@ if (isset($_GET['dispaly_all'])) {
       <div class="header_img">
         <?php
         if (isset($_SESSION['username'])) {
+
           echo "<a href='profile.php'><img src='images/Man_avatar_image.jpg' alt='user image'/></a>";
         } else {
           echo "<a href='index.php'><img src='images/Girl_avatar_image.jpg' alt='user image'/></a>";
         }
         ?>
+        
       </div>
     </div>
   </header>
@@ -244,8 +249,21 @@ if (isset($_GET['dispaly_all'])) {
 
     <!-- Footer -->
     <?php
-    include('./includes/footer.php');
+    // include('./includes/footer.php');
     // Render the IP address
     // $ip = getIPAddress();
+    // echo "<script>console.log('$ip')</script>";
     // echo 'User Real IP Address - ' . $ip;
     ?>
+
+  <div class="bg-dark p-3 text-center text-light footer w-100">
+    <p>All rights reserved &#x0040;Avshalom-projects 2023</p>
+  </div>
+
+    <!-- Botstrap JS link -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+
+</html>

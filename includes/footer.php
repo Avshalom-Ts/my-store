@@ -1,5 +1,5 @@
 
-<div class="bg-dark p-3 text-center text-light footer container-fluid">
+<div class="bg-dark p-3 text-center text-light position-absolute bottom-0 container-fluid">
   <p>All rights reserved &#x0040;Avshalom-projects 2023</p>
 </div>
 

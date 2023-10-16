@@ -1,6 +1,4 @@
-<?php
 
-?>
   <div class="container-fluid py-5">
     <div class="row d-flex justify-content-center align-items-center">
       <div class="col-6 d-flex justify-content-center align-items-center">
@@ -22,7 +20,7 @@
             <input class="form-control" type="password" name="password" id="password" placeholder="Enter Your Password" required>
           </div>
           <div class="form-outline mb-4 w-75 m-auto">
-            <input type="submit" value="Login" name="register" class="btn btn-info">
+            <input type="submit" value="Login" name="login" class="btn btn-info">
           </div>
           <div class="form-outline mb-4 w-75 m-auto">
             <p class="small text-info">Don't have an account? <a href="index.php?registration"><strong class="link-danger">Register</strong></a></p>
@@ -31,3 +29,24 @@
       </div>
     </div>
   </div>
+
+  <?php
+  if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $select_user_query = "select * from `users` where username='$username'";
+    $select_user_result = mysqli_query($con, $select_user_query);
+    $select_user_found = mysqli_num_fields($select_user_result);
+    $select_user_row = mysqli_fetch_assoc($select_user_result);
+    $ip = getIPAddress();
+
+    // If user exist
+    if ($select_user_found > 0) {
+      // Check for valid password
+      if (password_verify($password, $select_user_row['password'])) {
+        $_SESSION['username'] = $select_user_row['username'];
+        echo "<script>window.open('index.php','_self')</script>";
+      }
+    }
+  }
+  ?>
