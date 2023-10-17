@@ -1,6 +1,6 @@
 <?php
-include('./includes/connect.php');
-include('functions/common_function.php');
+include('../includes/connect.php');
+include('../functions/common_function.php');
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -40,6 +40,14 @@ $page_title = "Home Page";
   <link rel="stylesheet" href="style.scss">
   <title><?php echo $page_title ?></title>
 </head>
+
+<!-- <style>
+  .profile_img{
+  width: 60%;
+  height: 100%;
+  object-fit:contain;
+}
+</style> -->
 
 <!-- Layout -->
 <body id="body-pd">
@@ -96,7 +104,7 @@ $page_title = "Home Page";
         <i class="bx bx-menu" id="header-toggle"></i>
       </div>
       <div class="logo">
-        <a href="index.php"><img src="images/AzLogo48px.png" alt="logo" class="nav_logo-icon"></a>
+        <a href="index.php"><img src="../images/AzLogo48px.png" alt="logo" class="nav_logo-icon"></a>
       </div>
     </div>
     
@@ -115,7 +123,7 @@ $page_title = "Home Page";
       if (isset($_SESSION['username'])) {
         echo "
           <div class='header_img'>
-            <a href='users/index.php?profile'><img class='img-fluid img-thumbnail' src='users/user_images/$user_avatar' alt='user image'/></a>
+            <a href='index.php?profile'><img class='img-fluid img-thumbnail' src='user_images/$user_avatar' alt='user image'/></a>
           </div>
           ";
       } else {
@@ -213,7 +221,7 @@ $page_title = "Home Page";
               </ul>
             </li> -->
           </ul>
-          <form class="d-flex" action="" method="get" role="search">
+          <form class="d-flex" action="../index.php" method="get" role="search">
             <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" name="search_data">
             <input type="submit" value="Search" class="btn btn-outline-dark" name="search_data_product">
           </form>
@@ -223,30 +231,50 @@ $page_title = "Home Page";
     
     <!-- Main Components -->
     <div class="row">
-      <div class="col-12">
+      <div class="col-10 ps-5">
+      <?php
+      // getUserOrderDetails();
+      if (isset($_GET['profile'])) {
+        // echo "<h4 class='text-dark display-6'>Profile Page</h4>";
+        include('profile.php');
+      }
+      if (isset($_GET['edit_profile'])) {
+        // echo "<h4 class='text-dark display-6'>Profile Page</h4>";
+        include('edit_profile.php');
+      }
+      if (isset($_GET['my_orders'])) {
+        // include('user_orders.php');
+      }
+      if (isset($_GET['delete_account'])) {
+        // include('delete_account.php');
+      }
+      ?>
+      </div>
+      <div class="col-2 p-0 pt-5">
         <?php
-        if (isset($_GET['search_data_product'])) {
-          searchProduct();
-        } elseif (isset($_GET['all_products'])) {
-          echo "<div class='row p-2'>";
-          getAllProducts();
-          echo "</div>";
-        } elseif (isset($_GET['product_id'])) {
-          getProductByID();
-        } elseif (isset($_GET['cart'])) {
-          include('cart.php');
-        } elseif (isset($_GET['login'])) {
-          include('./users/login.php');
-        } elseif (isset($_GET['registration'])) {
-          include('./users/registration.php');
-        } else {
-          echo "<div class='row p-2'>";
-          getProducts();
-          echo "</div>";
-        }
-        getUniqueCategories();
-        getUniqueBrands();
+        // $username = $_SESSION['username'];
+        // if (!$username) {
+        //   echo "<script>window.open('../index.php','_self')</script>";
+        // }
+        // $user_image = "select * from `user_table` where username='$username'";
+        // $result_image = mysqli_query($con, $user_image);
+        // $row_image = mysqli_fetch_array($result_image);
+        // $user_image = $row_image['user_image'];
+        // echo "<li class='nav-item'>
+        //   <img src='./user_images/$user_image' alt='user_avatar' class='profile_img'>
+        // </li>";
         ?>
+
+        
+          <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php?profile">Profile</a>
+          <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php/profile.php">Cart Items</a>
+          <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="profile.php?my_orders">My orders</a>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-light" aria-current="page" href="profile.php?delete_account">Delete account</a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link text-light" aria-current="page" href="logout.php">Logout</a>
+        </li> -->
       </div>
     </div>
   </div>

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
 
 <?php
 $get_user = "select * from `user_table` where username='$username'";
@@ -48,19 +40,17 @@ $user_id = $user_row['user_id'];
         <td>$order_status</td>";
         ?>
 
-            <?php
-            if ($order_status == 'complete') {
-              echo "<td>Paid</td>
+              <?php
+              if ($order_status == 'complete') {
+                echo "<td>Paid</td>
           </tr>";
-            } else {
-              echo "<td><a href='confirm_payment.php?order_id=$order_id' class='btn btn-success'>Confirm</a></td>
+              } else {
+                echo "<td><a href='confirm_payment.php?order_id=$order_id' class='btn btn-success'>Confirm</a></td>
           </tr>";
-            }
-            ;
+              }
+              ;
       }
       ?>
       
     </tbody>
   </table>
-</body>
-</html>

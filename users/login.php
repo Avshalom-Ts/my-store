@@ -46,6 +46,8 @@
       if (password_verify($password, $select_user_row['password'])) {
         $_SESSION['username'] = $select_user_row['username'];
         echo "<script>window.open('index.php','_self')</script>";
+      } else {
+        // Invalid Credentials
       }
     }
   }

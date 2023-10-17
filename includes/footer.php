@@ -1,7 +1,8 @@
 
-<div class="bg-dark p-3 text-center text-light position-absolute bottom-0 container-fluid">
-  <p>All rights reserved &#x0040;Avshalom-projects 2023</p>
-</div>
+
+  <div class="bg-dark p-3 text-center text-light footer w-100">
+    <p>All rights reserved &#x0040;Avshalom-projects 2023</p>
+  </div>
 
     <!-- Botstrap JS link -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
