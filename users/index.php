@@ -3,12 +3,15 @@ include('../includes/connect.php');
 include('../functions/common_function.php');
 session_start();
 
-if (isset($_SESSION['username'])) {
-  $username = $_SESSION['username'];
-  $select_user_query = "select * from `users` where username='$username'";
+if (isset($_SESSION['user_id'])) {
+  $user_id = $_SESSION['user_id'];
+  $select_user_query = "select * from `users` where user_id=$user_id";
   $select_user_result = mysqli_query($con, $select_user_query);
   $select_user_row = mysqli_fetch_assoc($select_user_result);
   $user_avatar = $select_user_row['avatar'];
+  $username = $select_user_row['username'];
+} else {
+  echo "<script>window.open('../index.php','_self')</script>";
 }
 
 $active_link_all_products = "";
@@ -20,7 +23,7 @@ if (isset($_GET['logout'])) {
   session_start();
   session_unset();
   session_destroy();
-  echo "<script>window.open('index.php','_self')</script>";
+  echo "<script>window.open('index.php','_self')</>";
 }
 
 $page_title = "Home Page";
@@ -104,7 +107,7 @@ $page_title = "Home Page";
         <i class="bx bx-menu" id="header-toggle"></i>
       </div>
       <div class="logo">
-        <a href="index.php"><img src="../images/AzLogo48px.png" alt="logo" class="nav_logo-icon"></a>
+        <a href="../index.php"><img src="../images/AzLogo48px.png" alt="logo" class="nav_logo-icon"></a>
       </div>
     </div>
     
@@ -120,10 +123,10 @@ $page_title = "Home Page";
         </a>
       </div>
       <?php
-      if (isset($_SESSION['username'])) {
+      if (isset($_SESSION['user_id'])) {
         echo "
           <div class='header_img'>
-            <a href='index.php?profile'><img class='img-fluid img-thumbnail' src='user_images/$user_avatar' alt='user image'/></a>
+            <a href='index.php?profile'><img style='width:60px;height:60px;object-fit:contain;' class='img-fluid img-thumbnail' src='user_images/$user_avatar' alt='user image'/></a>
           </div>
           ";
       } else {
@@ -189,7 +192,7 @@ $page_title = "Home Page";
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <?php
             // If no user session show 'Welcome Guest login'
-            if (!isset($_SESSION['username'])) {
+            if (!isset($_SESSION['user_id'])) {
               echo "<li class='nav-item d-flex align-items-baseline'>
                   <h6>Welcome </h6><a class='nav-link' href='index.php?registration'>Guest</a>
                 </li>
@@ -199,7 +202,7 @@ $page_title = "Home Page";
             } else {
               // If user and session exist show 'Welcome <user> logout'
               echo "<li class='nav-item d-flex align-items-baseline'>
-                  <h6>Welcome </h6><a class='nav-link' href='index.php?profile'>" . $_SESSION['username'] . "</a>
+                  <h6>Welcome </h6><a class='nav-link' href='index.php?profile'>" . $username . "</a>
                 </li>";
               // <li class='nav-item'>
               //   <a class='nav-link' href='index.php?logout'>Logout</a>

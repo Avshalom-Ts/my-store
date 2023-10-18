@@ -3,12 +3,13 @@ include('./includes/connect.php');
 include('functions/common_function.php');
 session_start();
 
-if (isset($_SESSION['username'])) {
-  $username = $_SESSION['username'];
-  $select_user_query = "select * from `users` where username='$username'";
+if (isset($_SESSION['user_id'])) {
+  $user_id = $_SESSION['user_id'];
+  $select_user_query = "select * from `users` where user_id=$user_id";
   $select_user_result = mysqli_query($con, $select_user_query);
   $select_user_row = mysqli_fetch_assoc($select_user_result);
   $user_avatar = $select_user_row['avatar'];
+  $username = $select_user_row['username'];
 }
 
 $active_link_all_products = "";
@@ -112,7 +113,7 @@ $page_title = "Home Page";
         </a>
       </div>
       <?php
-      if (isset($_SESSION['username'])) {
+      if (isset($_SESSION['user_id'])) {
         echo "
           <div class='header_img'>
             <a href='users/index.php?profile'><img class='img-fluid img-thumbnail' src='users/user_images/$user_avatar' alt='user image'/></a>
@@ -181,7 +182,7 @@ $page_title = "Home Page";
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <?php
             // If no user session show 'Welcome Guest login'
-            if (!isset($_SESSION['username'])) {
+            if (!isset($_SESSION['user_id'])) {
               echo "<li class='nav-item d-flex align-items-baseline'>
                   <h6>Welcome </h6><a class='nav-link' href='index.php?registration'>Guest</a>
                 </li>
@@ -191,7 +192,7 @@ $page_title = "Home Page";
             } else {
               // If user and session exist show 'Welcome <user> logout'
               echo "<li class='nav-item d-flex align-items-baseline'>
-                  <h6>Welcome </h6><a class='nav-link' href='index.php?profile'>" . $_SESSION['username'] . "</a>
+                  <h6>Welcome </h6><a class='nav-link' href='index.php?profile'>" . $username . "</a>
                 </li>";
               // <li class='nav-item'>
               //   <a class='nav-link' href='index.php?logout'>Logout</a>

@@ -114,7 +114,6 @@ if (isset($_POST['register'])) {
       $insert_user_query = "INSERT INTO `users` (username,first_name,last_name,email,password,avatar,ip,address,phone,type,created) VALUES ('$username','$first_name','$last_name','$email','$hash_password','$image','$ip','$address',$phone,'$type',now())";
       $insert_user_result = mysqli_query($con, $insert_user_query);
       if ($insert_user_result) {
-        $_SESSION['username'] = $user_username;
         echo "<script>window.open('index.php?login','_self');</script>";
       }
     }

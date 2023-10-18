@@ -44,7 +44,7 @@
     if ($select_user_found > 0) {
       // Check for valid password
       if (password_verify($password, $select_user_row['password'])) {
-        $_SESSION['username'] = $select_user_row['username'];
+        $_SESSION['user_id'] = $select_user_row['user_id'];
         echo "<script>window.open('index.php','_self')</script>";
       } else {
         // Invalid Credentials
