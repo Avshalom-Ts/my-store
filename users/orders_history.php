@@ -1,10 +1,10 @@
 
 <?php
-$get_user = "select * from `user_table` where username='$username'";
-$result = mysqli_query($con, $get_user);
-$user_row = mysqli_fetch_assoc($result);
+$select_user_query = "select * from `users` where user_id='$user_id'";
+$select_user_result = mysqli_query($con, $select_user_query);
+$select_user_row = mysqli_fetch_assoc($select_user_result);
 // echo $user_row['username'];
-$user_id = $user_row['user_id'];
+$user_id = $select_user_row['user_id'];
 ?>
 
   <h3 class="text-center my-4">All my orders</h3>
@@ -40,15 +40,15 @@ $user_id = $user_row['user_id'];
         <td>$order_status</td>";
         ?>
 
-              <?php
-              if ($order_status == 'complete') {
-                echo "<td>Paid</td>
+                <?php
+                if ($order_status == 'complete') {
+                  echo "<td>Paid</td>
           </tr>";
-              } else {
-                echo "<td><a href='confirm_payment.php?order_id=$order_id' class='btn btn-success'>Confirm</a></td>
+                } else {
+                  echo "<td><a href='confirm_payment.php?order_id=$order_id' class='btn btn-success'>Confirm</a></td>
           </tr>";
-              }
-              ;
+                }
+                ;
       }
       ?>
       

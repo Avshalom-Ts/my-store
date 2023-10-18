@@ -80,6 +80,9 @@ if (isset($_POST['update'])) {
     <div class="form-outline mb-4">
       <input type="password" class="form-control w-50 m-auto" name="conf_password" placeholder="Confirm Password">
     </div>
-    <input type="submit" class="btn btn-info" value="Update" name="update">
+    <div class="d-flex justify-content-between w-50 m-auto">
+      <input type="submit" class="btn btn-info" value="Update Account" name="update">
+      <a href="index.php?delete_account" class="btn btn-danger">Delete Account</a>
+    </div>
   </form>
 

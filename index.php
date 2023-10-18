@@ -116,7 +116,7 @@ $page_title = "Home Page";
       if (isset($_SESSION['user_id'])) {
         echo "
           <div class='header_img'>
-            <a href='users/index.php?profile'><img class='img-fluid img-thumbnail' src='users/user_images/$user_avatar' alt='user image'/></a>
+            <a href='users/index.php?profile'><img style='width:100%;object-fit:contain;' class='img-fluid img-thumbnail' src='users/user_images/$user_avatar' alt='user image'/></a>
           </div>
           ";
       } else {

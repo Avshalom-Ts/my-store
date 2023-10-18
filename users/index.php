@@ -44,14 +44,6 @@ $page_title = "Home Page";
   <title><?php echo $page_title ?></title>
 </head>
 
-<!-- <style>
-  .profile_img{
-  width: 60%;
-  height: 100%;
-  object-fit:contain;
-}
-</style> -->
-
 <!-- Layout -->
 <body id="body-pd">
   <!-- Navbar -->
@@ -126,7 +118,7 @@ $page_title = "Home Page";
       if (isset($_SESSION['user_id'])) {
         echo "
           <div class='header_img'>
-            <a href='index.php?profile'><img style='width:60px;height:60px;object-fit:contain;' class='img-fluid img-thumbnail' src='user_images/$user_avatar' alt='user image'/></a>
+            <a href='index.php?profile'><img style='width:100%;object-fit:contain;' class='img-fluid img-thumbnail' src='user_images/$user_avatar' alt='user image'/></a>
           </div>
           ";
       } else {
@@ -245,33 +237,24 @@ $page_title = "Home Page";
         // echo "<h4 class='text-dark display-6'>Profile Page</h4>";
         include('edit_profile.php');
       }
-      if (isset($_GET['my_orders'])) {
-        // include('user_orders.php');
+      if (isset($_GET['orders_history'])) {
+        include('orders_history.php');
       }
       if (isset($_GET['delete_account'])) {
-        // include('delete_account.php');
+        include('delete_account.php');
       }
       ?>
       </div>
       <div class="col-2 p-0 pt-5">
         <?php
-        // $username = $_SESSION['username'];
-        // if (!$username) {
-        //   echo "<script>window.open('../index.php','_self')</script>";
-        // }
-        // $user_image = "select * from `user_table` where username='$username'";
-        // $result_image = mysqli_query($con, $user_image);
-        // $row_image = mysqli_fetch_array($result_image);
-        // $user_image = $row_image['user_image'];
-        // echo "<li class='nav-item'>
-        //   <img src='./user_images/$user_image' alt='user_avatar' class='profile_img'>
-        // </li>";
+        echo "<div class='d-flex w-75 mb-3'>
+          <img style='width: 100%;object-fit:contain;' src='./user_images/$user_avatar' alt='user_avatar' class='d-flex object-fit-contain img-thumbnail'>
+        </div>";
         ?>
-
+  
         
           <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php?profile">Profile</a>
-          <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php/profile.php">Cart Items</a>
-          <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="profile.php?my_orders">My orders</a>
+          <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php?orders_history">Orders History </a>
         <!-- <li class="nav-item">
           <a class="nav-link text-light" aria-current="page" href="profile.php?delete_account">Delete account</a>
         </li> -->
