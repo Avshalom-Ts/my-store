@@ -1,7 +1,4 @@
-<?php
-
-?>
-
+<div class="container mt-5">
 
 <h3 class="text-center">All Categories</h3>
 
@@ -52,3 +49,5 @@
     
   </tbody>
 </table>
+
+</div>

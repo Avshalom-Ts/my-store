@@ -8,7 +8,7 @@ if (isset($_POST['insert_product'])) {
   $product_category = $_POST['product_category'];
   $product_brads = $_POST['product_brads'];
   $product_price = $_POST['product_price'];
-  $product_status = "true";
+  $product_instock = $_POST['product_instock'];
 
   // accessing images
   $product_image1 = $_FILES['product_image1']['name'];
@@ -32,47 +32,46 @@ if (isset($_POST['insert_product'])) {
     move_uploaded_file($temp_image3, "./product_images/$product_image3");
 
     //insert query
-    $insert_products = "insert into `products` (product_title,product_description,product_keywords,category_id,brand_id,product_image1,product_image2,product_image3,product_price,date,status) values ('$product_title','$product_description','$product_keywords','$product_category','$product_brads','$product_image1','$product_image2','$product_image3','$product_price',NOW(),'$product_status')";
+    $insert_products = "insert into `products` (product_title,product_description,product_keywords,category_id,brand_id,product_image1,product_image2,product_image3,product_price,date,product_instock) values ('$product_title','$product_description','$product_keywords','$product_category','$product_brads','$product_image1','$product_image2','$product_image3','$product_price',NOW(),$product_instock)";
     $result_query = mysqli_query($con, $insert_products);
     if ($result_query) {
-      echo "<script>alert('Successfully inserted the product.')</script>";
+      echo "<script>window.open('index.php?insert_product','_self')</script>";
     }
   }
 }
 ?>
 
-  <div class="container mt-3">
-    <h1 class="text-center">Insert Products</h1>
+<div class="container mt-5">
+    <h3 class="w-50">Insert Products</h3>
+    <div class="row">
+      <div class="col-6 mt-5">
     <!-- <div class="flex">
       <a href="http://localhost/my-store/admin" class="btn btn-info">Back to Admin panel</a>
     </div> -->
 
     <!-- Form create product -->
     <form action="" method="post" enctype="multipart/form-data">
-
       <!-- Title -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_title" class="form-label">Product Title</label>
         <input type="text" name="product_title" id="product_title" class="form-control" placeholder="Enter product title" required>
       </div>
 
       <!-- Description -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_description" class="form-label">Product Description</label>
         <input type="text" name="product_description" id="product_description" class="form-control" placeholder="Enter product description" required>
       </div>
 
       <!-- Key words -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_keywords" class="form-label">Product Keywords</label>
         <input type="text" name="product_keywords" id="product_keywords" class="form-control" placeholder="Enter product keywords" required>
       </div>
 
-      
-      
-
       <!-- Categories -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
+        <label for="product_keywords" class="form-label">Select Category</label>
         <select name="product_category" id="" class="form-select" >
           <option value="">Select a category</option>
           <?php
@@ -88,7 +87,8 @@ if (isset($_POST['insert_product'])) {
       </div>
 
       <!-- Brands -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
+        <label for="product_keywords" class="form-label">Select Brand</label>
         <select name="product_brads" id="" class="form-select" >
           <option value="">Select a brands</option>
           <?php
@@ -102,33 +102,40 @@ if (isset($_POST['insert_product'])) {
           ?>
         </select>
       </div>
-      
+      </div>
+      <div class="col-6 mt-5">
       <!-- Image 1 -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_image1" class="form-label">Product Image 1</label>
         <input type="file" name="product_image1" id="product_image1" class="form-control" required>
       </div>
       <!-- Image 2 -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_image2" class="form-label">Product Image 2</label>
         <input type="file" name="product_image2" id="product_image2" class="form-control" required>
       </div>
       <!-- Image 3 -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_image3" class="form-label">Product Image 3</label>
         <input type="file" name="product_image3" id="product_image3" class="form-control" required>
       </div>
-
-      
       <!-- Price -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <div class="form-outline mb-4">
         <label for="product_price" class="form-label">Product Price</label>
         <input type="text" name="product_price" id="product_price" class="form-control" autocomplete="off" placeholder="Enter product price" required="required">
       </div>
+      <!-- Instok -->
+      <div class="form-outline mb-4">
+        <label for="product_instock" class="form-label">Add to Stock</label>
+        <input type="number" name="product_instock" id="product_instock" class="form-control" autocomplete="off" placeholder="Add to Stock" required="required">
+      </div>
 
-      <!-- Price -->
-      <div class="form-outline mb-4 w-50  m-auto">
+      <!-- Submit -->
+    </div>
+      <div class="form-outline mb-4">
         <input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="insert Product">
       </div>
     </form>
+    </div>
+    
   </div>

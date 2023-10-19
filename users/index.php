@@ -255,12 +255,11 @@ $page_title = "Home Page";
         
           <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php?profile">Profile</a>
           <a class="btn btn-outline-dark w-75 mb-2" aria-current="page" href="index.php?orders_history">Orders History </a>
-        <!-- <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="profile.php?delete_account">Delete account</a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link text-light" aria-current="page" href="logout.php">Logout</a>
-        </li> -->
+          <?php
+          if ($type == 'super_user') {
+            echo "<a class='btn btn-outline-dark w-75 mb-2' aria-current='page' href='../admin/index.php'>Admin Panel</a>";
+          }
+          ?>
       </div>
     </div>
   </div>

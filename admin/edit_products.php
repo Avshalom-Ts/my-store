@@ -44,6 +44,7 @@ $product_image1 = $product_row['product_image1'];
 $product_image2 = $product_row['product_image2'];
 $product_image3 = $product_row['product_image3'];
 $product_price = $product_row['product_price'];
+$product_instock = $product_row['product_instock'];
 
 // Update the product
 if (isset($_POST['update_product'])) {
@@ -53,6 +54,7 @@ if (isset($_POST['update_product'])) {
   $category_id = $_POST['product_category'];
   $brand_id = $_POST['product_brands'];
   $product_price = $_POST['product_price'];
+  $product_instock = $_POST['product_instock'];
 
   if ($_FILES['product_image1']['name']) {
     $product_image1 = $_FILES['product_image1']['name'];
@@ -70,10 +72,9 @@ if (isset($_POST['update_product'])) {
     move_uploaded_file($product_image3_tmp, "./product_images/$product_image3");
   }
 
-  $update_product = "update `products` set product_title='$product_title', product_description='$product_description', product_keywords='$product_keywords', category_id=$category_id, brand_id=$brand_id,product_image1='$product_image1', product_price=$product_price,date=NOW() where product_id=$product_id";
+  $update_product = "update `products` set product_title='$product_title', product_description='$product_description', product_keywords='$product_keywords', category_id=$category_id, brand_id=$brand_id,product_image1='$product_image1', product_price=$product_price,date=NOW(),product_instock=$product_instock where product_id=$product_id";
   $update_query = mysqli_query($con, $update_product);
   if ($update_query) {
-    echo "<script>alert('Product Updated successfully.!!')</script>";
     echo "<script>window.open('index.php?edit_products=$product_id','_self')</script>";
   }
 }
@@ -158,6 +159,10 @@ if (isset($_POST['update_product'])) {
     <div class="form-outline w-50 mx-auto mb-4">
       <label for="product_price" class="form-label">Product Price</label>
       <input value="<?php echo $product_price ?>" type="text" id="product_price" name="product_price" class="form-control" required placeholder="Product Price">
+    </div>
+    <div class="form-outline w-50 mx-auto mb-4">
+      <label for="product_instock" class="form-label">In Stock</label>
+      <input value="<?php echo $product_instock ?>" type="text" id="product_instock" name="product_instock" class="form-control" required placeholder="In Stock">
     </div>
     <div class="w-50 mx-auto mb-4">
       <input type="submit" name="update_product" value="Update Product" class="btn btn-info">
